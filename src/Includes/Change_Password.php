@@ -39,7 +39,7 @@ session_start();
                 // Send password change confirmation email
                 require ('PHPMailer-Files/script.php');
                 $subject = "Modification du mot de passe";
-                $message = "Bonjour " . $user['FIRSTNAME'] . ",\r\n Votre mot de passe a correctement été modifié.";
+                $message = "Bonjour " . $user['FIRSTNAME'] . ",<br>Votre mot de passe a correctement été modifié.<br><br>Bonne journée.";
                 sendMail($user["EMAIL"], $subject, $message);
             } else {
                 echo "<script type='text/javascript'>alert('Mot de passe incorrect.');</script>";
@@ -56,7 +56,7 @@ session_start();
     <title>Change Password</title>
 </head>
 <body>
-    <?php include '../Templates/Header.html'; ?>
+    <?php include '../Templates/Header.php'; ?>
     <?php include '../Templates/Change_Password.html'; ?>
 </body>
 </html>

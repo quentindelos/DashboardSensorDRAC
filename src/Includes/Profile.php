@@ -21,15 +21,17 @@ session_start();
     <title>Profile</title>
 </head>
 <body>
-    <?php include '../Templates/Header.html'; ?>
+    <?php include '../Templates/Header.php'; ?>
     <main>
         <section>
             <H1>Paramètres de profil</H1>
                 <?php
                     echo 'Bonjour ' . $_SESSION["FIRSTNAME"] . ' ' . $_SESSION["LASTNAME"];
                 ?>
-            <br>
+            <br><br>
             <a href="Change_Password">Changer mon mot de passe</a>
+            <br>
+            <a href="Recovery_Password">Mot de passe oublié</a>
         </section>
     </main>
     </body>

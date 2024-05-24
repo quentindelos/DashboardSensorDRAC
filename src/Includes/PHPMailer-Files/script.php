@@ -114,7 +114,7 @@ function sendMail($email, $subject, $message){
    /*
       Assigning the incoming message to the $mail->body property.
     */
-   $mail->Body = $message;
+   $mail->Body = nl2br($message);
  
    /*
       When we set $mail->AltBody, we are providing 
@@ -124,7 +124,7 @@ function sendMail($email, $subject, $message){
       In such cases, the email client will display 
       the plain text content instead of the HTML content.
     */
-   $mail->AltBody = $message;
+   $mail->AltBody = nl2br($message);
    
    /*
       And last we send the email.

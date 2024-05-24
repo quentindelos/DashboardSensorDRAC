@@ -1,5 +1,4 @@
 <?php
-//INSERT INTO `user`(`LOGIN`, `PASSWORD`, `ID_TYPE_USER`) VALUES ('root','$2y$10$YdCG.9njZoqcNLuT40NBn.fs.A9XLnKaNDt9kDHoa/X8pdcastEpW','A')
 session_start();
 
 // Si l'utilisateur est déjà connecté, le rediriger vers la page principale
@@ -31,6 +30,7 @@ if(!isset($_SESSION["LOGIN"])){
                 $_SESSION['LOGIN'] = $user['LOGIN'];
                 $_SESSION['FIRSTNAME'] = $user['FIRSTNAME'];
                 $_SESSION['LASTNAME'] = $user['LASTNAME'];
+                $_SESSION['ID_TYPE_USER'] = $user['ID_TYPE_USER'];
                 header('Location: .');
             } else {
                 echo "<script type='text/javascript'>alert('Mot de passe incorrect.');</script>";

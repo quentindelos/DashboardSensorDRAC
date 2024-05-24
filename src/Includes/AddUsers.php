@@ -49,8 +49,7 @@ session_start();
             $LOGIN = strtolower($_POST['FIRSTNAME'] . '.' . $_POST['LASTNAME']);
             $EMAIL = htmlspecialchars($_POST['EMAIL']);
             $ID_TYPE_USER = htmlspecialchars($_POST['ID_TYPE_USER']);
-            $PASSWORD = $TempPassword;
-            $hashed_password = password_hash($PASSWORD, PASSWORD_DEFAULT);
+            $hashed_password = password_hash($TempPassword, PASSWORD_DEFAULT);
             
 
             // Vérifier si l'utilisateur existe déjà
@@ -64,8 +63,8 @@ session_start();
                 
                 //Envoi du mot de passe par mail
                 require ('PHPMailer-Files/script.php');
-                $subject = "Création de votre compte";
-                $message = "Bonjour " . $FIRSTNAME . ",\r\nVotre compte a bien été créé.\r\nVous pouvez dès maintenant vous connectez à l'interface de surveillance des baies de brassage par ce lien : http://127.0.0.1/projet/ \r\n\r\n Votre mot de passe temporaire est : " . $TempPassword ."\r\n\r\nPensez à le changer votre mot de passe une fois que vous vous êtes connecté.\r\n\r\nBonne journée.";
+                $subject = "Validation de votre compte";
+                $message = "Bonjour " . $FIRSTNAME . ",<br>Votre compte a bien été créé.<br>Vous pouvez dès maintenant vous connectez à l'interface de surveillance des baies de brassage par ce lien : <a href='https://192.168.112.13/DashboardSensorDRAC/src/Includes/Change_Password'>changer mon mot de passe</a>.<br>Votre mot de passe temporaire est : " . $TempPassword ."<br><br>Pensez à le changer votre mot de passe une fois que vous vous êtes connecté.<br>Bonne journée.";
                 sendMail($_POST['EMAIL'], $subject, $message);
 
                 // Vérifier si l'insertion a réussi
@@ -92,7 +91,7 @@ session_start();
     <title>Ajouter Utilisateur</title>
 </head>
 <body>
-    <?php include '../Templates/Header.html'; ?>
+    <?php include '../Templates/Header.php'; ?>
     <?php include '../Templates/AddUsers.html'; ?>
 </body>
 </html>

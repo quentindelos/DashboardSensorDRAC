@@ -1,12 +1,21 @@
 Options -Indexes
 RewriteEngine On
+
+# Redirection des fichiers PHP
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L]
 
+# Redirection des fichiers HTML
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
-RewriteEngine On
+# Forcer HTTPS
 RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Spécifier les fichiers index par défaut
+<IfModule mod_dir.c>
+    DirectoryIndex Index.php
+</IfModule>

@@ -17,3 +17,7 @@
     font-family: 'Trip Sans';
     box-sizing: border-box;
 }
+
+body{
+    background-color: aqua;
+}
