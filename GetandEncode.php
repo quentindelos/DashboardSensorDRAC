@@ -50,45 +50,50 @@ while ($row = $EmailLists->fetch(PDO::FETCH_ASSOC)) {
 }
 
 $subject = "Alertes Capteurs";
-if ($temperature > 30) {
-    if ($temperature > 32) {
-        $message = "La température est de " . $temperature . "°C, elle est critique.<br>Veuillez intervenir le plus vite possible.";
-        foreach ($emails as $email) {
-            sendMail($email, $subject, $message);
-        }
-    }   
+if ($temperature > 30 && $temperature < 32 ) {
+   
     $message = "La température est de " . $temperature . "°C, elle est au dela de la moyenne.<br>Veuillez intervenir.";
     foreach ($emails as $email) {
         sendMail($email, $subject, $message);
     }
+      
 }
+elseif ($temperature > 32) {
+    $message = "La température est de " . $temperature . "°C, elle est critique.<br>Veuillez intervenir le plus vite possible.";
+    foreach ($emails as $email) {
+        sendMail($email, $subject, $message);
+    }
+}  
 
 
-if ($humidite > 75) {
-    if ($humidite > 90) {
-        $message = "L'humidité est de " . $humidite . "%, il est critique.<br>Veuillez intervenir le plus vite possible.";
-        foreach ($emails as $email) {
-            sendMail($email, $subject, $message);
-        }
-    }   
+if ($humidite > 75 && $humidite < 90) {
+    
     $message = "L'humidité est de " . $humidite . "%, il est au dela de la moyenne.<br>Veuillez intervenir.";
     foreach ($emails as $email) {
         sendMail($email, $subject, $message);
     }
+    
 }
+elseif ($humidite > 90) {
+    $message = "L'humidité est de " . $humidite . "%, il est critique.<br>Veuillez intervenir le plus vite possible.";
+    foreach ($emails as $email) {
+        sendMail($email, $subject, $message);
+    }
+}   
 
 
-if ($CO2 > 700) {
-    if ($CO2 > 800) {
-        $message = "Le CO2 est de " . $CO2 . "PPM, il est critique.<br>Veuillez intervenir le plus vite possible.";
-        foreach ($emails as $email) {
-            sendMail($email, $subject, $message);
-        }
-    }   
+if ($CO2 > 800 && $CO2 < 1200) {
+    
     $message = "Le CO2 est de " . $CO2 . "PPM, il est au dela de la moyenne.<br>Veuillez intervenir.";
     foreach ($emails as $email) {
         sendMail($email, $subject, $message);
     }
 }
+elseif ($CO2 > 1200) {
+    $message = "Le CO2 est de " . $CO2 . "PPM, il est critique.<br>Veuillez intervenir le plus vite possible.";
+    foreach ($emails as $email) {
+        sendMail($email, $subject, $message);
+    }
+}   
 $bdd = null;
 ?>

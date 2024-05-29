@@ -20,18 +20,12 @@ session_start();
         die("Erreur de connexion à la base de données : " . $e->getMessage());
     }
 
-    // Récupérer l'état de l'utilisateur actuel
-    $LOGIN = $_SESSION["LOGIN"];
-    $ID_TYPE_USER = $bdd->prepare('SELECT ID_TYPE_USER FROM USER WHERE LOGIN = ?');
-    $ID_TYPE_USER->execute([$LOGIN]);
-    $result = $ID_TYPE_USER->fetch();
-
-    // Si l'utilisateur actuel a un état d'utilisateur égal à 1, rediriger vers la page d'accueil
-    if ($result['ID_TYPE_USER'] != 'A') {
+    // Si l'utilisateur actuel n'est pas Administrateur, rediriger vers la page d'accueil
+    if ($_SESSION['ID_TYPE_USER'] != 'A') {
         header("Location: ../..");
     }
 
-    //Génère un mot de passe
+    //Génère un mot de passe aléatoire
     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
     $length = strlen($alphabet);
     $TempPassword = "";
@@ -40,7 +34,6 @@ session_start();
         $TempPassword .= $alphabet[$n];
     }
     
-
     // Traitement du formulaire d'enregistrement
     if(isset($_POST['CreateUser'])){
         if(!empty($_POST['FIRSTNAME']) && !empty($_POST['LASTNAME']) && !empty($_POST['EMAIL']) && !empty($_POST['ID_TYPE_USER'])){
@@ -64,7 +57,7 @@ session_start();
                 //Envoi du mot de passe par mail
                 require ('PHPMailer-Files/script.php');
                 $subject = "Validation de votre compte";
-                $message = "Bonjour " . $FIRSTNAME . ",<br>Votre compte a bien été créé.<br>Vous pouvez dès maintenant vous connectez à l'interface de surveillance des baies de brassage par ce lien : <a href='https://192.168.112.13/DashboardSensorDRAC/src/Includes/Change_Password'>changer mon mot de passe</a>.<br>Votre mot de passe temporaire est : " . $TempPassword ."<br><br>Pensez à le changer votre mot de passe une fois que vous vous êtes connecté.<br>Bonne journée.";
+                $message = "Bonjour " . $FIRSTNAME . ",<br>Votre compte a bien été créé.<br>Vous pouvez dès maintenant vous connectez à l'interface de surveillance des baies de brassage par ce lien : <a href='https://192.168.112.13/DashboardSensorDRAC/src/Includes/Change_Password'>changer mon mot de passe</a>.<br>Votre identifiant est : " . $LOGIN ."<br>Votre mot de passe temporaire est : " . $TempPassword ."<br><br>Pensez à le changer votre mot de passe une fois que vous vous êtes connecté.<br>Bonne journée.";
                 sendMail($_POST['EMAIL'], $subject, $message);
 
                 // Vérifier si l'insertion a réussi
@@ -87,11 +80,18 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/AddUsers.css">
+    <link rel="shortcut icon" href="/DashboardSensorDRAC/src/Styles/img/logo-Marianne.ico" type="image/x-icon">
     <title>Ajouter Utilisateur</title>
 </head>
 <body>
-    <?php include '../Templates/Header.php'; ?>
-    <?php include '../Templates/AddUsers.html'; ?>
+    <header>
+        <?php include '../Templates/Header.php'; ?>
+    </header>
+    <main>
+        <?php include '../Templates/AddUsers.html'; ?>
+    </main>
+    <footer>
+        <?php include '../Templates/Footer.html'; ?>
+    </footer>
 </body>
 </html>

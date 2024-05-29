@@ -8,9 +8,23 @@ function getDataAndDisplay() {
             var humidity = parseFloat(values[1]);
             var co2 = parseFloat(values[2]);
 
-            $('#temperature').html('Température actuelle : ' + temperature + ' °C');
-            $('#humidity').html("Taux d'humidité actuel : " + humidity + ' %');
-            $('#CO2').html('CO2 actuel : ' + co2 + ' ppm');
+            var alertIconHtml = '<img src="https://get-picto.com/wp-content/uploads/2023/09/attention-picto-png.webp" class="alert-icon" alt="Attention">';
+
+            if (temperature > 32) {
+                $('#temperature').html('Température actuelle : ' + temperature + ' °C ' + alertIconHtml).addClass('alert');
+            } else {
+                $('#temperature').html('Température actuelle : ' + temperature + ' °C').removeClass('alert').css('color', 'black');
+            }
+            if (humidity > 80) {
+                $('#humidity').html("Taux d'humidité actuel : " + humidity + ' % ' + alertIconHtml).addClass('alert');
+            } else {
+                $('#humidity').html("Taux d'humidité actuel : " + humidity + ' %').removeClass('alert').css('color', 'black');
+            }
+            if (co2 > 1200) {
+                $('#CO2').html('CO2 actuel : ' + co2 + ' ppm ' + alertIconHtml).addClass('alert');
+            } else {
+                $('#CO2').html('CO2 actuel : ' + co2 + ' ppm').removeClass('alert').css('color', 'black');
+            }
 
             google.charts.load('current', {'packages':['gauge']});
             google.charts.setOnLoadCallback(function() {
@@ -68,14 +82,14 @@ function drawChart(temperature, humidity, co2) {
         width: 600,
         height: 200,
         greenFrom: 400,
-        greenTo:700,
-        yellowFrom: 700,
-        yellowTo: 800,
-        redFrom: 800,
-        redTo: 1200,
+        greenTo:800,
+        yellowFrom: 800,
+        yellowTo: 1200,
+        redFrom: 1200,
+        redTo: 2000,
         minorTicks: 10,
         min: 400,
-        max: 1200
+        max: 2000
     };
 
     var tempChart = new google.visualization.Gauge(document.getElementById('temp_div'));

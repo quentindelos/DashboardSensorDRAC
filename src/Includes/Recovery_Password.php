@@ -33,15 +33,11 @@ session_start();
                     $message = "Bonjour,<br>Suite à votre demande de nouveau mot de passe voici votre mot de passe temporaire : " . $TempPassword . "<br>Pensez à le modifier dans les paramètres de votre profil.<br><br>Bonne journée.";
                     sendMail($EMAIL, $subject, $message);
                     echo "Un nouveau mot de passe a été envoyé à votre adresse e-mail.";
-                } else {
-                    echo "Erreur lors de la mise à jour du mot de passe.";
-                }
+                } 
             } else {
                 echo "Adresse e-mail invalide.";
             }
-        } else {
-            echo "Veuillez saisir une adresse e-mail.";
-        }
+        } 
     }
 ?>
 
@@ -51,6 +47,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/DashboardSensorDRAC/src/Styles/img/logo-Marianne.ico" type="image/x-icon">
     <title>Mot de passe oublié</title>
 </head>
 <body>

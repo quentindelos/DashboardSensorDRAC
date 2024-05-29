@@ -41,6 +41,7 @@ session_start();
                 $subject = "Modification du mot de passe";
                 $message = "Bonjour " . $user['FIRSTNAME'] . ",<br>Votre mot de passe a correctement été modifié.<br><br>Bonne journée.";
                 sendMail($user["EMAIL"], $subject, $message);
+                header('location: Profile');
             } else {
                 echo "<script type='text/javascript'>alert('Mot de passe incorrect.');</script>";
             }
@@ -53,10 +54,18 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/DashboardSensorDRAC/src/Styles/img/logo-Marianne.ico" type="image/x-icon">
     <title>Change Password</title>
 </head>
 <body>
-    <?php include '../Templates/Header.php'; ?>
-    <?php include '../Templates/Change_Password.html'; ?>
+    <header>
+        <?php include '../Templates/Header.php'; ?>
+    </header>
+    <main>
+        <?php include '../Templates/Change_Password.html'; ?>
+    </main>
+    <footer>
+        <?php include '../Templates/Footer.html'; ?>
+    </footer>
 </body>
 </html>
