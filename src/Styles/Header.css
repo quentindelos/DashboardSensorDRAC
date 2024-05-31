@@ -11,7 +11,7 @@
     font-display: swap;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Trip Sans';
@@ -28,40 +28,84 @@ body {
     min-height: 100vh;
 }
 
-.nav-icon {
-    width: 24px;
-    height: 24px;
+.contain {
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px auto;
+    text-align: center;
 }
 
-.navbar-custom {
-    background-color: #000091;
-    border-bottom: 2px solid #f8f9fa;
-    border-radius: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 1rem;
-    max-width: 1200px;
-    margin: auto;
-    margin-top: 20px;
+h2, h3 {
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.navbar-custom .nav-link {
-    color: #f8f9fa;
-    font-weight: bold;
-    transition: color 0.3s;
+p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
 }
 
-.navbar-custom .nav-link:hover {
-    color: #007bff;
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .contain {
+        max-width: 90%;
+    }
 }
 
-.navbar-logo {
-    fill: #f8f9fa;
+@media (max-width: 768px) {
+    .contain {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    h2, h3 {
+        margin-bottom: 15px;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
 }
 
-.navbar-person {
-    fill: #f8f9fa;
+@media (max-width: 480px) {
+    body {
+        line-height: 1.4;
+    }
+
+    .contain {
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    h2, h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1em;
+        margin-bottom: 15px;
+    }
 }
 
-.dropdown-menu {
-    border-radius: 10px;
+/* Additional media query for extra small devices (max-width: 320px) */
+@media (max-width: 320px) {
+    .contain {
+        padding: 8px;
+        margin: 5px auto;
+    }
+
+    h2, h3 {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+    }
+
+    p {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
 }

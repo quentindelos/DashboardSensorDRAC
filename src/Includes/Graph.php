@@ -28,22 +28,36 @@ if (isset($_POST['logout'])) {
             flex-wrap: wrap;
             justify-content: space-around;
             gap: 20px;
+            padding: 20px;
         }
 
         .chart-container {
-            margin-top: 100px;
             flex: 1 1 calc(33.33% - 20px);
-            max-width: 33.33%;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             cursor: pointer;
+            max-width: calc(100% - 40px);
         }
 
         canvas {
             width: 100% !important;
-            height: 300px !important;
+            height: auto !important;
+        }
+
+        @media (max-width: 1200px) {
+            .chart-container {
+                flex: 1 1 calc(50% - 20px);
+                max-width: calc(50% - 40px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                flex: 1 1 calc(100% - 20px);
+                max-width: calc(100% - 40px);
+            }
         }
     </style>
     <script>
